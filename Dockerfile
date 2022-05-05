@@ -1,6 +1,6 @@
-FROM ubuntu:latest
-RUN apt-get update && apt-get install netcat python3-pip -y && pip3 install prometheus_client
+FROM python:3.8-slim
 WORKDIR /code
-COPY main.py /code
+COPY . .
+RUN pip install -r requirements.txt
 EXPOSE 1701
-CMD [ "python3", "main.py", "1701" ]
+CMD [ "python", "main.py", "1701" ]
